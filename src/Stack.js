@@ -14,7 +14,7 @@ class Stack extends Component {
     state = {
         stack: [],
         index: 9,
-        peek: false,
+        log: [],
     }
 
     componentDidMount() {
@@ -25,9 +25,9 @@ class Stack extends Component {
         this.setState({stack: arr});
     }
 
-    closeSnackBar = () => {
-        this.setState({peek: false});
-    }
+    // closeSnackBar = () => {
+    //     this.setState({peek: false});
+    // }
 
     handleButton = (func) => {
         switch(func){
@@ -35,27 +35,32 @@ class Stack extends Component {
                 this.push(5);
                 break;
             case 'Peek':
-                this.setState({peek: true});
+                this.peek();
                 break;
         }
     }
 
     push = (val) => {
-        let copy = this.state.stack;
+        let stackCopy = this.state.stack;
+        let log = this.state.log;
         const i = this.state.index;
 
-        copy[i] = val;
+        stackCopy[i] = val;
+        log.push('Pushed ' + val + ' to Stack');
 
         const stack = document.getElementsByClassName('stack-element');
         stack[i].style.backgroundColor = '#ffcc66';
         setTimeout(() => stack[i].innerHTML = val, 1000);
         setTimeout(() => stack[i].style.backgroundColor = 'YellowGreen', 1000);
-        this.setState({index: this.state.index - 1, stack: copy});
+        this.setState({index: this.state.index - 1, stack: stackCopy, log});
     }
 
     peek = () => {
+        let log = this.state.log;
         const i = this.state.index;
 
+        log.push('Peek Returned X');
+        this.setState({log});
     }
 
     render() {
@@ -70,21 +75,33 @@ class Stack extends Component {
                         )
                     })}
                 </div>
-                <div className='stack-container'>
-                    {this.state.stack.map((num, index) => {
-                        return (
-                            <div key={index} className='stack-element'>
-                                {''}
-                            </div>
-                        )
-                    })}
+                <div className='main-root'>
+                    <div className='stack-container'>
+                        {this.state.stack.map((num, index) => {
+                            return (
+                                <div key={index} className='stack-element'>
+                                    {''}
+                                </div>
+                            )
+                        })}
+                    </div>
+                    <div className='log-root'>
+                        {this.state.log.map((message) => {
+                            return (
+                                <div>
+                                    {message}
+                                </div>
+                            )
+                        })}
+                    </div>
                 </div>
-                <Snackbar
+                
+                {/* <Snackbar
                     open={this.state.peek}
                     message={this.state.index === 9 ? 'Stack is Empty' : 'Peek Returned ' + this.state.stack[this.state.index+1]}
                     autoHideDuration={5000}
                     onClose={() => this.closeSnackBar()}
-                />
+                /> */}
             </div>
         )
     }

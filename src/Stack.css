@@ -1,11 +1,13 @@
+.main-root {
+  display: flex;
+}
+
 .stack-container {
-  max-width: 300px;
   border-top: 1px solid black;
-  margin-top: 200px;
 }
 
 .stack-element {
-  width: 100%;
+  width: 300px;
   height: 50px;
   border: 1px solid black;
   border-top: none;
@@ -15,4 +17,10 @@
   background-color: cornflowerblue;
   font-size: 25px;
   font-weight: 600;
+}
+
+.log-root {
+  width: 300px;
+  height: 500px;
+  border: 1px solid black;
 }
