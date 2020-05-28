@@ -37,6 +37,9 @@ class Stack extends Component {
             case 'Peek':
                 this.peek();
                 break;
+            case 'Pop':
+                this.pop();
+                break;
         }
     }
 
@@ -61,6 +64,29 @@ class Stack extends Component {
         const i = this.state.index;
         log.push(stackCopy[i+1] ? 'Peek Retruned ' + stackCopy[i+1] : 'Stack is Empty');
         this.setState({log});
+    }
+
+    pop = () => {
+        let stackCopy = this.state.stack;
+        let log = this.state.log;
+        const i = this.state.index + 1;
+
+        if(i === 10){
+            log.push('Stack is Empty');
+            this.setState({log});
+            return;
+        }
+
+        const stack = document.getElementsByClassName('stack-element');
+        stack[i].style.backgroundColor = 'FireBrick';
+        setTimeout(() => stack[i].innerHTML = '', 1000);
+        setTimeout(() => stack[i].style.backgroundColor = 'cornflowerblue', 1000);
+
+        log.push(stackCopy[i] + ' Deleted from Stack');
+
+        stackCopy[i] = null;
+        
+        this.setState({log, stack: stackCopy, index: i});
     }
 
     render() {
