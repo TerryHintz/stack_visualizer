@@ -1,14 +1,9 @@
 import React, {Component} from 'react';
 import './Stack.css'
 
-import Snackbar from '@material-ui/core/Snackbar';
+import Header from './Header'
 
-const funcs = [
-    'Push',
-    'Pop',
-    'Peek',
-    'isEmpty',
-]
+import Button from '@material-ui/core/Button';
 
 class Stack extends Component {
     state = {
@@ -25,14 +20,10 @@ class Stack extends Component {
         this.setState({stack: arr});
     }
 
-    // closeSnackBar = () => {
-    //     this.setState({peek: false});
-    // }
-
     handleButton = (func) => {
         switch(func){
             case 'Push':
-                this.push(5);
+                this.push();
                 break;
             case 'Peek':
                 this.peek();
@@ -46,7 +37,8 @@ class Stack extends Component {
         }
     }
 
-    push = (val) => {
+    push = () => {
+        const val = document.getElementById('num-input').value;
         let stackCopy = this.state.stack;
         let log = this.state.log;
         const i = this.state.index;
@@ -103,15 +95,9 @@ class Stack extends Component {
     render() {
         return(
             <div>
-                <div>
-                    {funcs.map((func) => {
-                        return (
-                            <div key={func}>
-                                <span onClick={() => this.handleButton(func)}>{func}</span>
-                            </div>
-                        )
-                    })}
-                </div>
+                <Header
+                    handleButton = {this.handleButton}
+                />
                 <div className='main-root'>
                     <div className='stack-container'>
                         {this.state.stack.map((num, index) => {
@@ -132,13 +118,6 @@ class Stack extends Component {
                         })}
                     </div>
                 </div>
-                
-                {/* <Snackbar
-                    open={this.state.peek}
-                    message={this.state.index === 9 ? 'Stack is Empty' : 'Peek Returned ' + this.state.stack[this.state.index+1]}
-                    autoHideDuration={5000}
-                    onClose={() => this.closeSnackBar()}
-                /> */}
             </div>
         )
     }

@@ -25,3 +25,30 @@
   height: 500px;
   border: 1px solid black;
 }
+
+.header {
+  height: 75px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: black;
+  color: white;
+  margin-bottom: 50px;
+}
+
+.header-input {
+  margin: 0 10px;
+  width: 50px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.header-text {
+  padding-left: 20px;
+  font-size: 20px;
+  font-weight: 600;
+}
