@@ -40,6 +40,9 @@ class Stack extends Component {
             case 'Pop':
                 this.pop();
                 break;
+            case 'isEmpty':
+                this.isEmpty();
+                break;
         }
     }
 
@@ -85,8 +88,16 @@ class Stack extends Component {
         log.push(stackCopy[i] + ' Deleted from Stack');
 
         stackCopy[i] = null;
-        
+
         this.setState({log, stack: stackCopy, index: i});
+    }
+
+    isEmpty = () => {
+        const i = this.state.index + 1;
+        let log = this.state.log;
+
+        log.push( i===10 ? 'isEmpty returned TRUE' : 'isEmpty returned FALSE');
+        this.setState({log});
     }
 
     render() {
