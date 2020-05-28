@@ -1,5 +1,6 @@
 .main-root {
   display: flex;
+  justify-content: space-around;
 }
 
 .stack-container {

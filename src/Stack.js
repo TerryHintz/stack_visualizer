@@ -56,10 +56,10 @@ class Stack extends Component {
     }
 
     peek = () => {
+        const stackCopy = this.state.stack;
         let log = this.state.log;
         const i = this.state.index;
-
-        log.push('Peek Returned X');
+        log.push(stackCopy[i+1] ? 'Peek Retruned ' + stackCopy[i+1] : 'Stack is Empty');
         this.setState({log});
     }
 
