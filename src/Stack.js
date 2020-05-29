@@ -47,14 +47,14 @@ class Stack extends Component {
         this.checkLog(log);
 
         if(!val){
-            log.push('Please Enter Integer Value');
+            log.push('Push: Value is Blank');
             this.setState({log});
             return;
         }
 
         stackCopy[i] = val;
         
-        log.push('Pushed ' + val + ' to Stack');
+        log.push('Push: Pushed ' + val + ' to Stack');
 
         const stack = document.getElementsByClassName('stack-element');
         stack[i].style.backgroundColor = '#ffcc66';
@@ -70,7 +70,7 @@ class Stack extends Component {
 
         this.checkLog(log);
 
-        log.push(stackCopy[i+1] ? 'Peek Retruned ' + stackCopy[i+1] : 'Stack is Empty');
+        log.push(stackCopy[i+1] ? 'Peek: ' + stackCopy[i+1] : 'Peek: Stack is Empty');
         this.setState({log});
     }
 
@@ -82,7 +82,7 @@ class Stack extends Component {
         this.checkLog(log);
 
         if(i === STACK_SIZE){
-            log.push('Stack is Empty');
+            log.push('Pop: Stack is Empty');
             this.setState({log});
             return;
         }
@@ -92,7 +92,7 @@ class Stack extends Component {
         setTimeout(() => stack[i].innerHTML = '', 1000);
         setTimeout(() => stack[i].style.backgroundColor = 'cornflowerblue', 1000);
 
-        log.push('Deleted ' + stackCopy[i] + ' from Stack');
+        log.push('Pop: Deleted ' + stackCopy[i] + ' from Stack');
 
         stackCopy[i] = null;
 
@@ -105,7 +105,7 @@ class Stack extends Component {
 
         this.checkLog(log);
 
-        log.push( i===STACK_SIZE ? 'isEmpty returned TRUE' : 'isEmpty returned FALSE');
+        log.push( i===STACK_SIZE ? 'isEmpty: TRUE' : 'isEmpty: FALSE');
         this.setState({log});
     }
 
