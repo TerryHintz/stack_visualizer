@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 const funcs = [
     'Pop',
     'Peek',
+    'Size',
     'isEmpty',
 ]
 

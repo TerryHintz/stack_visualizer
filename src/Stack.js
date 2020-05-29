@@ -35,6 +35,9 @@ class Stack extends Component {
             case 'isEmpty':
                 this.isEmpty();
                 break;
+            case 'Size':
+                this.size();
+                break;
             default:
                 this.peek();
                 break;
@@ -115,6 +118,15 @@ class Stack extends Component {
         this.checkLog(log);
 
         log.push( i===STACK_SIZE ? 'isEmpty: TRUE' : 'isEmpty: FALSE');
+        this.setState({log});
+    }
+
+    size = () => {
+        const i = this.state.index + 1;
+        let log = this.state.log;
+
+        this.checkLog(log);
+        log.push('Size: ' + (STACK_SIZE - i).toString(10));
         this.setState({log});
     }
 
