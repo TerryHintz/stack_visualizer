@@ -12,8 +12,8 @@ class Header extends Component {
     render () {
         return (
             <div className='header'>
-                <div className='header-section-left'>
-                    <span className='header-text'>{'Enter Integer'}</span>
+                <div className='header-section'>
+                    <span className='header-text'>{'Enter Value'}</span>
                     <input
                         id='num-input'
                         type='text'

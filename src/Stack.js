@@ -43,7 +43,16 @@ class Stack extends Component {
         let log = this.state.log;
         const i = this.state.index;
 
+        this.checkLog(log);
+
+        if(!val){
+            log.push('Please Enter Integer Value');
+            this.setState({log});
+            return;
+        }
+
         stackCopy[i] = val;
+        
         log.push('Pushed ' + val + ' to Stack');
 
         const stack = document.getElementsByClassName('stack-element');
@@ -57,6 +66,9 @@ class Stack extends Component {
         const stackCopy = this.state.stack;
         let log = this.state.log;
         const i = this.state.index;
+
+        this.checkLog(log);
+
         log.push(stackCopy[i+1] ? 'Peek Retruned ' + stackCopy[i+1] : 'Stack is Empty');
         this.setState({log});
     }
@@ -65,6 +77,8 @@ class Stack extends Component {
         let stackCopy = this.state.stack;
         let log = this.state.log;
         const i = this.state.index + 1;
+
+        this.checkLog(log);
 
         if(i === 10){
             log.push('Stack is Empty');
@@ -77,7 +91,7 @@ class Stack extends Component {
         setTimeout(() => stack[i].innerHTML = '', 1000);
         setTimeout(() => stack[i].style.backgroundColor = 'cornflowerblue', 1000);
 
-        log.push(stackCopy[i] + ' Deleted from Stack');
+        log.push('Deleted ' + stackCopy[i] + ' from Stack');
 
         stackCopy[i] = null;
 
@@ -88,8 +102,16 @@ class Stack extends Component {
         const i = this.state.index + 1;
         let log = this.state.log;
 
+        this.checkLog(log);
+
         log.push( i===10 ? 'isEmpty returned TRUE' : 'isEmpty returned FALSE');
         this.setState({log});
+    }
+
+    checkLog = (log) => {
+        if(log.length === 13){
+            log.shift();
+        }
     }
 
     render() {
@@ -109,9 +131,9 @@ class Stack extends Component {
                         })}
                     </div>
                     <div className='log-root'>
-                        {this.state.log.map((message) => {
+                        {this.state.log.map((message, index) => {
                             return (
-                                <div>
+                                <div style={{backgroundColor: index === this.state.log.length-1 ? 'lightgreen' : 'LightSeaGreen' }} className='log-msg'>
                                     {message}
                                 </div>
                             )
