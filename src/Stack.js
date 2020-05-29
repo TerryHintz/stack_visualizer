@@ -3,13 +3,13 @@ import './Stack.css'
 
 import Header from './Header'
 
-const STACK_SIZE = 10;
-const LOG_SIZE = 13;
+const STACK_SIZE = 12;
+const LOG_SIZE = 15;
 
 class Stack extends Component {
     state = {
         stack: [],
-        index: 9,
+        index: STACK_SIZE-1,
         log: [],
     }
 
@@ -35,6 +35,9 @@ class Stack extends Component {
             case 'isEmpty':
                 this.isEmpty();
                 break;
+            default:
+                this.peek();
+                break;
         }
     }
 
@@ -45,6 +48,12 @@ class Stack extends Component {
         const i = this.state.index;
 
         this.checkLog(log);
+
+        if(i === -1){
+            log.push('Push: Maxed Stack Size Reached');
+            this.setState({log});
+            return;
+        }
 
         if(!val){
             log.push('Push: Value is Blank');
@@ -139,7 +148,7 @@ class Stack extends Component {
                         <div className='stack-log-root'>
                             {this.state.log.map((message, index) => {
                                 return (
-                                    <div style={{backgroundColor: index === this.state.log.length-1 ? 'lightgreen' : 'LightSeaGreen' }} className='stack-log-msg'>
+                                    <div key={index} style={{backgroundColor: index === this.state.log.length-1 ? 'lightgreen' : 'LightSeaGreen' }} className='stack-log-msg'>
                                         {message}
                                     </div>
                                 )
