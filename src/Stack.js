@@ -78,11 +78,15 @@ class Stack extends Component {
     peek = () => {
         const stackCopy = this.state.stack;
         let log = this.state.log;
-        const i = this.state.index;
+        const i = this.state.index + 1;
 
         this.checkLog(log);
 
-        log.push(stackCopy[i+1] ? 'Peek: ' + stackCopy[i+1] : 'Peek: Stack is Empty');
+        const stack = document.getElementsByClassName('stack-element');
+        stack[i].style.backgroundColor = '#ffcc66';
+        setTimeout(() => stack[i].style.backgroundColor = 'YellowGreen', 1000);
+
+        log.push(stackCopy[i] ? 'Peek: ' + stackCopy[i] : 'Peek: Stack is Empty');
         this.setState({log});
     }
 
