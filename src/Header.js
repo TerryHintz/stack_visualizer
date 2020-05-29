@@ -3,7 +3,6 @@ import './Stack.css';
 import Button from '@material-ui/core/Button';
 
 const funcs = [
-    'Push',
     'Pop',
     'Peek',
     'isEmpty',
@@ -13,25 +12,38 @@ class Header extends Component {
     render () {
         return (
             <div className='header'>
-                <span className='header-text'>{'Enter Integer'}</span>
-                <input
-                    id='num-input'
-                    type='text'
-                    className='header-input'
-                />
-                {funcs.map((func) => {
-                    return (
-                        <Button
-                            style={{color: 'white'}}
-                            color='primary'
-                            variant="contained"
-                            key={func}
-                            onClick={() => this.props.handleButton(func)}
-                        >
-                            {func}
-                        </Button>
-                    )
-                })}
+                <div className='header-section-left'>
+                    <span className='header-text'>{'Enter Integer'}</span>
+                    <input
+                        id='num-input'
+                        type='text'
+                        className='header-input'
+                    />
+                    <Button
+                        className='header-button'
+                        color='primary'
+                        variant="contained"
+                        key={'Push'}
+                        onClick={() => this.props.handleButton('Push')}
+                    >
+                        {'Push'}
+                    </Button>
+                </div>
+                <div className='header-section'>
+                    {funcs.map((func) => {
+                        return (
+                            <Button
+                                className='header-button'
+                                color='primary'
+                                variant="contained"
+                                key={func}
+                                onClick={() => this.props.handleButton(func)}
+                            >
+                                {func}
+                            </Button>
+                        )
+                    })}
+                </div>
             </div>
         )
     }
