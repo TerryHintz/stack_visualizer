@@ -3,7 +3,8 @@ import './Stack.css'
 
 import Header from './Header'
 
-import Button from '@material-ui/core/Button';
+const STACK_SIZE = 10;
+const LOG_SIZE = 13;
 
 class Stack extends Component {
     state = {
@@ -14,7 +15,7 @@ class Stack extends Component {
 
     componentDidMount() {
         let arr = [];
-        for(let i=0; i<10; i++){
+        for(let i=0; i<STACK_SIZE; i++){
             arr.push(null);
         }
         this.setState({stack: arr});
@@ -59,7 +60,7 @@ class Stack extends Component {
         stack[i].style.backgroundColor = '#ffcc66';
         setTimeout(() => stack[i].innerHTML = val, 1000);
         setTimeout(() => stack[i].style.backgroundColor = 'YellowGreen', 1000);
-        this.setState({index: this.state.index - 1, stack: stackCopy, log});
+        this.setState({index: i - 1, stack: stackCopy, log});
     }
 
     peek = () => {
@@ -80,7 +81,7 @@ class Stack extends Component {
 
         this.checkLog(log);
 
-        if(i === 10){
+        if(i === STACK_SIZE){
             log.push('Stack is Empty');
             this.setState({log});
             return;
@@ -104,12 +105,12 @@ class Stack extends Component {
 
         this.checkLog(log);
 
-        log.push( i===10 ? 'isEmpty returned TRUE' : 'isEmpty returned FALSE');
+        log.push( i===STACK_SIZE ? 'isEmpty returned TRUE' : 'isEmpty returned FALSE');
         this.setState({log});
     }
 
     checkLog = (log) => {
-        if(log.length === 13){
+        if(log.length === LOG_SIZE){
             log.shift();
         }
     }
@@ -120,24 +121,30 @@ class Stack extends Component {
                 <Header
                     handleButton = {this.handleButton}
                 />
-                <div className='main-root'>
-                    <div className='stack-container'>
-                        {this.state.stack.map((num, index) => {
-                            return (
-                                <div key={index} className='stack-element'>
-                                    {''}
-                                </div>
-                            )
-                        })}
+                <div className='stack-main-root'>
+                    <div>
+                        <div className='stack-title'>Stack</div>
+                        <div className='stack-container'>
+                            {this.state.stack.map((num, index) => {
+                                return (
+                                    <div key={index} className='stack-element'>
+                                        {''}
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </div>
-                    <div className='log-root'>
-                        {this.state.log.map((message, index) => {
-                            return (
-                                <div style={{backgroundColor: index === this.state.log.length-1 ? 'lightgreen' : 'LightSeaGreen' }} className='log-msg'>
-                                    {message}
-                                </div>
-                            )
-                        })}
+                    <div>
+                        <div className='stack-title'>Log</div>
+                        <div className='stack-log-root'>
+                            {this.state.log.map((message, index) => {
+                                return (
+                                    <div style={{backgroundColor: index === this.state.log.length-1 ? 'lightgreen' : 'LightSeaGreen' }} className='stack-log-msg'>
+                                        {message}
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </div>
                 </div>
             </div>

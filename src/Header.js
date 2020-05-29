@@ -11,16 +11,16 @@ const funcs = [
 class Header extends Component {
     render () {
         return (
-            <div className='header'>
-                <div className='header-section'>
-                    <span className='header-text'>{'Enter Value'}</span>
+            <div className='stack-header'>
+                <div className='stack-header-section'>
+                    <span className='stack-header-text'>{'Enter Value'}</span>
                     <input
                         id='num-input'
                         type='text'
-                        className='header-input'
+                        className='stack-header-input'
                     />
                     <Button
-                        className='header-button'
+                        className='stack-header-button'
                         color='primary'
                         variant="contained"
                         key={'Push'}
@@ -29,11 +29,11 @@ class Header extends Component {
                         {'Push'}
                     </Button>
                 </div>
-                <div className='header-section'>
+                <div className='stack-header-section'>
                     {funcs.map((func) => {
                         return (
                             <Button
-                                className='header-button'
+                                className='stack-header-button'
                                 color='primary'
                                 variant="contained"
                                 key={func}
