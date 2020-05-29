@@ -82,11 +82,17 @@ class Stack extends Component {
 
         this.checkLog(log);
 
+        if(!stackCopy[i]){
+            log.push('Peek: Stack is Empty');
+            this.setState({log});
+            return;
+        }
+
         const stack = document.getElementsByClassName('stack-element');
         stack[i].style.backgroundColor = '#ffcc66';
         setTimeout(() => stack[i].style.backgroundColor = 'YellowGreen', 1000);
 
-        log.push(stackCopy[i] ? 'Peek: ' + stackCopy[i] : 'Peek: Stack is Empty');
+        log.push('Peek: ' + stackCopy[i]);
         this.setState({log});
     }
 
