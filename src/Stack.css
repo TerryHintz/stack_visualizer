@@ -1,10 +1,13 @@
 .stack-main-root {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .stack-container {
   border-top: 1px solid black;
+  margin: 0 20px 20px 20px;
+  width: 300px;
 }
 
 .stack-element {
@@ -21,6 +24,7 @@
 }
 
 .stack-log-root {
+  margin: 0 20px 20px 20px;
   width: 300px;
   height: 613px;
   border: 1px solid black;
@@ -34,7 +38,7 @@
 
 .stack-header {
   height: 75px;
-  margin: 0 auto;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,7 +64,12 @@
   font-weight: 600;
 }
 
-.stack-header-section {
+.stack-header-left {
+  display: flex;
+  align-items: center;
+}
+
+.stack-header-right {
   display: flex;
   align-items: center;
 }
@@ -75,5 +84,39 @@
   text-align: center;
   font-size: 35px;
   font-weight: 600;
+  padding: 10px 0;
+}
+
+.stack-mobile-right {
+  display: none;
+}
+
+.stack-mobile-button {
+  text-align: center;
   padding: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 699px){
+  .stack-header-right {
+    display: none;
+  }
+  .stack-mobile-right {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 499px){
+  .stack-header-button {
+    font-size: 10px !important;
+  }
+  .stack-header-text {
+    font-size: 15px;
+    padding-left: 10px;
+  }
+  .stack-header-input {
+    width: 25px;
+  }
 }
